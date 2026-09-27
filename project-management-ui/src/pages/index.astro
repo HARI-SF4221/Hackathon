@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import Testimonial from '../components/Testimonial.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+
+const trustedBy = ['Acme', 'Globex', 'Initech', 'Umbrella', 'Stark', 'Wayne'];
+
+const features = [
+  { title: 'AI Auto-Planning', description: 'Our AI breaks down goals into actionable tasks automatically.' },
+  { title: 'Smart Dependencies', description: 'Auto-detect blockers and reorder tasks to keep teams unblocked.' },
+  { title: 'Predictive Timelines', description: 'AI forecasts delivery dates based on team velocity and history.' },
+];
+
+const testimonials = [
+  { quote: 'TaskFlow AI cut our sprint planning from 2 hours to 15 minutes.', author: 'Sarah Chen', role: 'Engineering Lead, Acme' },
+  { quote: 'The AI suggestions are scarily accurate. It knows what we should work on next.', author: 'Marcus Johnson', role: 'Product Manager, Globex' },
+  { quote: 'Best project management tool we have used. Period.', author: 'Priya Patel', role: 'CTO, Initech' },
+];
+
+const faqs = [
+  { q: 'How does the AI work?', a: 'TaskFlow AI uses your project history, team velocity, and task patterns to suggest optimal plans and timelines.' },
+  { q: 'Is my data secure?', a: 'Yes. We use enterprise-grade encryption and are SOC 2 Type II certified.' },
+  { q: 'Can I import from other tools?', a: 'Absolutely. We support one-click imports from Jira, Asana, Linear, and Trello.' },
+  { q: 'Do you offer a free trial?', a: 'Yes, all paid plans come with a 14-day free trial. No credit card required.' },
+];
+---
+<BaseLayout title="TaskFlow AI — AI-First Project Management">
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 grid-pattern opacity-20"></div>
+    <div class="container py-20 sm:py-32 relative">
+      <div class="max-w-4xl mx-auto text-center animate-fade-up">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-sm mb-6">
+          <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse-slow"></span>
+          New: AI Sprint Planner
+        </div>
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+          Ship projects <span class="gradient-text">10x faster</span> with AI
+        </h1>
+        <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+          The AI-first project management platform that automates planning, detects blockers, and predicts timelines — so your team can focus on shipping.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a href="/pricing" class="btn-primary">Start Free Trial</a>
+          <a href="/how-it-works" class="btn-secondary">See How It Works</a>
+        </div>
+        <p class="text-sm text-gray-500">No credit card required · 14-day free trial · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted by -->
+  <section class="container py-12 border-y border-ink-700/50">
+    <p class="text-center text-sm text-gray-500 uppercase tracking-wider mb-6">Trusted by 5,000+ teams</p>
+    <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
+      {trustedBy.map(name => (
+        <span class="text-2xl font-bold text-gray-600 hover:text-gray-400 transition-colors">{name}</span>
+      ))}
+    </div>
+  </section>
+
+  <!-- Features highlights -->
+  <section class="container py-20">
+    <SectionHeading
+      eyebrow="Powerful features"
+      title="Everything you need to ship faster"
+      description="Built for modern teams that move fast and care about quality."
+    />
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {features.map(f => <FeatureCard title={f.title} description={f.description} />)}
+    </div>
+  </section>
+
+  <!-- Workflow preview -->
+  <section class="container py-20">
+    <SectionHeading
+      eyebrow="How it works"
+      title="From chaos to clarity in seconds"
+      description="Watch TaskFlow AI transform a rough project idea into a complete plan."
+    />
+    <div class="glass rounded-2xl p-8 sm:p-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="text-2xl font-bold text-white mb-4">Input your goal</h3>
+          <div class="bg-ink-900/60 rounded-lg p-4 font-mono text-sm text-gray-300 mb-6">
+            "Launch a new mobile app in Q2 with a team of 5 engineers"
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-4">Get a complete plan</h3>
+          <ul class="space-y-2 text-gray-300">
+            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> 47 tasks auto-generated</li>
+            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> 12 dependencies mapped</li>
+            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> Sprint schedule ready</li>
+            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> Risk analysis included</li>
+          </ul>
+        </div>
+        <div class="relative">
+          <div class="absolute inset-0 gradient-bg opacity-20 blur-3xl"></div>
+          <div class="relative glass rounded-xl p-6 space-y-3">
+            <div class="flex items-center gap-3 p-3 bg-ink-900/60 rounded-lg">
+              <div class="w-2 h-2 rounded-full bg-green-400"></div>
+              <span class="text-sm text-gray-300">Design system audit</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-ink-900/60 rounded-lg">
+              <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+              <span class="text-sm text-gray-300">API architecture review</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-ink-900/60 rounded-lg">
+              <div class="w-2 h-2 rounded-full bg-brand-400"></div>
+              <span class="text-sm text-gray-300">Beta release candidate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="container py-20">
+    <SectionHeading
+      eyebrow="Loved by teams"
+      title="What our customers say"
+    />
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {testimonials.map(t => <Testimonial quote={t.quote} author={t.author} role={t.role} />)}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container py-20">
+    <SectionHeading
+      eyebrow="FAQ"
+      title="Common questions"
+    />
+    <div class="max-w-3xl mx-auto space-y-4">
+      {faqs.map(f => (
+        <FAQ question={f.q}>{f.a}</FAQ>
+      ))}
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

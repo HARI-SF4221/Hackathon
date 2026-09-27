@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import WorkflowStep from '../components/WorkflowStep.astro';
+import CTA from '../components/CTA.astro';
+
+const steps = [
+  { number: 1, title: 'Connect your tools', description: 'Integrate with GitHub, Figma, Slack, and 100+ more in seconds.' },
+  { number: 2, title: 'Set your goals', description: 'Tell TaskFlow AI what you want to achieve. Be as vague or specific as you like.' },
+  { number: 3, title: 'Get an AI plan', description: 'Our AI generates a complete project plan with tasks, dependencies, and timelines.' },
+  { number: 4, title: 'Ship faster', description: 'Track progress with predictive analytics and let AI handle the busywork.' },
+];
+
+const integrations = ['GitHub', 'GitLab', 'Slack', 'Figma', 'Notion', 'Jira', 'Linear', 'Trello'];
+---
+<BaseLayout title="How It Works — TaskFlow AI">
+  <section class="container py-20">
+    <SectionHeading
+      eyebrow="How it works"
+      title="From idea to ship in 4 steps"
+      description="A simple pipeline that turns chaos into clarity."
+    />
+  </section>
+
+  <section class="container pb-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      {steps.map(s => <WorkflowStep number={s.number} title={s.title} description={s.description} />)}
+    </div>
+  </section>
+
+  <section class="container py-20">
+    <div class="glass rounded-2xl p-8 sm:p-12 relative overflow-hidden">
+      <div class="absolute inset-0 grid-pattern opacity-20"></div>
+      <div class="relative">
+        <SectionHeading
+          eyebrow="AI feedback loop"
+          title="The AI gets smarter with every project"
+          description="TaskFlow AI continuously learns from your team's velocity, decisions, and outcomes — getting more accurate over time."
+          align="left"
+        />
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
+          <div class="text-center">
+            <div class="text-4xl font-bold gradient-text mb-2">87%</div>
+            <p class="text-gray-400 text-sm">Accuracy after 1 month</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold gradient-text mb-2">94%</div>
+            <p class="text-gray-400 text-sm">Accuracy after 6 months</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold gradient-text mb-2">99%</div>
+            <p class="text-gray-400 text-sm">Accuracy after 1 year</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container py-20">
+    <SectionHeading
+      eyebrow="Integrations"
+      title="Works with your stack"
+      description="100+ integrations. Connect everything your team uses."
+    />
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
+      {integrations.map(name => (
+        <div class="glass rounded-lg p-6 text-center hover:border-brand-500/50 transition-colors">
+          <span class="text-white font-medium">{name}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>
