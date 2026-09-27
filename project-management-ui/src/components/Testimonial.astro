@@ -1,0 +1,25 @@
+---
+interface Props {
+  quote: string;
+  author: string;
+  role: string;
+  initials?: string;
+}
+const { quote, author, role, initials } = Astro.props;
+const displayInitials = initials || author.split(' ').map(n => n[0]).join('').slice(0, 2);
+---
+<div class="glass rounded-xl p-6 hover:border-brand-500/50 transition-colors">
+  <svg class="w-8 h-8 text-brand-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
+  </svg>
+  <p class="text-gray-300 mb-6 italic">"{quote}"</p>
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center font-semibold text-white">
+      {displayInitials}
+    </div>
+    <div>
+      <p class="text-white font-medium">{author}</p>
+      <p class="text-gray-400 text-sm">{role}</p>
+    </div>
+  </div>
+</div>

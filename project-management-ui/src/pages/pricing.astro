@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTA from '../components/CTA.astro';
+
+const tiers = [
+  {
+    name: 'Starter',
+    price: { monthly: 0, annual: 0 },
+    description: 'For small teams getting started',
+    features: ['Up to 5 team members', '3 active projects', 'Basic AI suggestions', 'Community support', '7-day history'],
+    cta: 'Start Free',
+    highlighted: false,
+  },
+  {
+    name: 'Pro',
+    price: { monthly: 12, annual: 10 },
+    description: 'For growing teams that ship fast',
+    features: ['Unlimited team members', 'Unlimited projects', 'Full AI features', 'Priority support', 'Unlimited history', 'Advanced analytics', 'Custom workflows', 'API access'],
+    cta: 'Start Free Trial',
+    highlighted: true,
+  },
+  {
+    name: 'Enterprise',
+    price: { monthly: 49, annual: 39 },
+    description: 'For large organizations',
+    features: ['Everything in Pro', 'SSO & SCIM', 'Dedicated support', 'Custom AI training', '99.9% SLA', 'Audit logs', 'Onboarding manager', 'Custom contracts'],
+    cta: 'Contact Sales',
+    highlighted: false,
+  },
+];
+---
+<BaseLayout title="Pricing — TaskFlow AI">
+  <section class="container py-20">
+    <SectionHeading
+      eyebrow="Pricing"
+      title="Simple, transparent pricing"
+      description="Start free. Upgrade when you're ready."
+    />
+
+    <div class="flex justify-center mb-12">
+      <div class="inline-flex items-center glass rounded-lg p-1">
+        <button id="monthly-btn" class="px-4 py-2 rounded-md text-sm font-medium bg-brand-500 text-white" aria-pressed="true">Monthly</button>
+        <button id="annual-btn" class="px-4 py-2 rounded-md text-sm font-medium text-gray-300" aria-pressed="false">Annual <span class="text-xs text-green-400">Save 20%</span></button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      {tiers.map(tier => (
+        <div class={`rounded-2xl p-8 ${tier.highlighted ? 'gradient-bg' : 'glass'} relative`}>
+          {tier.highlighted && (
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-white text-brand-600 text-xs font-semibold rounded-full">
+              Most Popular
+            </div>
+          )}
+          <h3 class={`text-2xl font-bold mb-2 ${tier.highlighted ? 'text-white' : 'text-white'}`}>{tier.name}</h3>
+          <p class={`text-sm mb-6 ${tier.highlighted ? 'text-white/80' : 'text-gray-400'}`}>{tier.description}</p>
+          <div class="mb-6">
+            <span class={`text-5xl font-bold ${tier.highlighted ? 'text-white' : 'text-white'}`}>
+              $<span data-monthly={tier.price.monthly} data-annual={tier.price.annual}>{tier.price.monthly}</span>
+            </span>
+            <span class={`text-sm ${tier.highlighted ? 'text-white/80' : 'text-gray-400'}`}>/user/month</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            {tier.features.map(feat => (
+              <li class="flex items-start gap-2">
+                <svg class={`w-5 h-5 flex-shrink-0 mt-0.5 ${tier.highlighted ? 'text-white' : 'text-brand-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class={`text-sm ${tier.highlighted ? 'text-white' : 'text-gray-300'}`}>{feat}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="/contact" class={`block w-full text-center py-3 rounded-lg font-medium transition-colors ${tier.highlighted ? 'bg-white text-brand-600 hover:bg-gray-100' : 'btn-primary'}`}>
+            {tier.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>
+
+<script>
+  const monthlyBtn = document.getElementById('monthly-btn');
+  const annualBtn = document.getElementById('annual-btn');
+  const prices = document.querySelectorAll('[data-monthly]');
+
+  function setBilling(period: 'monthly' | 'annual') {
+    prices.forEach(el => {
+      const value = el.getAttribute(`data-${period}`);
+      if (value) el.textContent = value;
+    });
+    if (period === 'monthly') {
+      monthlyBtn?.classList.add('bg-brand-500', 'text-white');
+      monthlyBtn?.classList.remove('text-gray-300');
+      annualBtn?.classList.remove('bg-brand-500', 'text-white');
+      annualBtn?.classList.add('text-gray-300');
+      monthlyBtn?.setAttribute('aria-pressed', 'true');
+      annualBtn?.setAttribute('aria-pressed', 'false');
+    } else {
+      annualBtn?.classList.add('bg-brand-500', 'text-white');
+      annualBtn?.classList.remove('text-gray-300');
+      monthlyBtn?.classList.remove('bg-brand-500', 'text-white');
+      monthlyBtn?.classList.add('text-gray-300');
+      annualBtn?.setAttribute('aria-pressed', 'true');
+      monthlyBtn?.setAttribute('aria-pressed', 'false');
+    }
+  }
+
+  monthlyBtn?.addEventListener('click', () => setBilling('monthly'));
+  annualBtn?.addEventListener('click', () => setBilling('annual'));
+</script>

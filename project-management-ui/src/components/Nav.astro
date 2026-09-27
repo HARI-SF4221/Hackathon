@@ -1,0 +1,63 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/features', label: 'Features' },
+  { href: '/how-it-works', label: 'How It Works' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+<header class="sticky top-0 z-40 w-full border-b border-ink-700/50 bg-ink-900/80 backdrop-blur-md">
+  <nav class="container flex items-center justify-between h-16" aria-label="Main navigation">
+    <a href="/" class="flex items-center gap-2 font-bold text-xl">
+      <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="nav-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="100%" stop-color="#3B82F6"/>
+          </linearGradient>
+        </defs>
+        <rect width="32" height="32" rx="8" fill="url(#nav-grad)"/>
+        <path d="M8 12L14 18L24 8" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="gradient-text">TaskFlow AI</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-6">
+      {links.map(link => (
+        <li>
+          <a href={link.href} class="text-gray-300 hover:text-white transition-colors">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="hidden md:flex items-center gap-3">
+      <a href="/contact" class="text-gray-300 hover:text-white transition-colors">Sign in</a>
+      <a href="/pricing" class="btn-primary text-sm px-4 py-2">Get Started</a>
+    </div>
+    <button id="mobile-toggle" class="md:hidden text-white" aria-label="Toggle menu" aria-expanded="false">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </nav>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-ink-700/50 bg-ink-900/95">
+    <ul class="container py-4 space-y-3">
+      {links.map(link => (
+        <li><a href={link.href} class="block py-2 text-gray-300 hover:text-white">{link.label}</a></li>
+      ))}
+      <li class="pt-2"><a href="/pricing" class="btn-primary w-full">Get Started</a></li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+</script>
