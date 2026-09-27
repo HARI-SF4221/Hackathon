@@ -9,25 +9,28 @@ import CTA from '../components/CTA.astro';
 const trustedBy = ['Acme', 'Globex', 'Initech', 'Umbrella', 'Stark', 'Wayne'];
 
 const features = [
-  { title: 'AI Auto-Planning', description: 'Our AI breaks down goals into actionable tasks automatically.' },
-  { title: 'Smart Dependencies', description: 'Auto-detect blockers and reorder tasks to keep teams unblocked.' },
-  { title: 'Predictive Timelines', description: 'AI forecasts delivery dates based on team velocity and history.' },
+  { title: 'Insight intake', description: 'Capture verbatim customer feedback with source, customer, segment and contract value — file it unlinked and triage later.' },
+  { title: 'Insight-to-feature linking', description: 'One insight, many features. Each feature surfaces the customers and contract value behind it, so priority has an evidence trail.' },
+  { title: 'Configurable scoring', description: 'RICE-style scoring with editable weights. Change a weight and the whole backlog re-ranks live — formula and contribution shown, not hidden.' },
+  { title: 'Roadmap with dependencies', description: 'Drag features across releases on a timeline. Dependent items flag conflicts instead of silently shifting.' },
+  { title: 'Kanban with WIP limits', description: 'Configurable columns mapped to statuses. Drag between columns, with a visible warning when work-in-progress limits are exceeded.' },
+  { title: 'Tasks and critical path', description: 'Break features into tasks with assignees, dates and finish-to-start dependencies. The dependency view surfaces the critical path.' },
 ];
 
 const testimonials = [
-  { quote: 'TaskFlow AI cut our sprint planning from 2 hours to 15 minutes.', author: 'Sarah Chen', role: 'Engineering Lead, Acme' },
-  { quote: 'The AI suggestions are scarily accurate. It knows what we should work on next.', author: 'Marcus Johnson', role: 'Product Manager, Globex' },
-  { quote: 'Best project management tool we have used. Period.', author: 'Priya Patel', role: 'CTO, Initech' },
+  { quote: 'We finally answer "why is this on the roadmap" with evidence instead of opinion.', author: 'Sarah Chen', role: 'Product Manager, Acme' },
+  { quote: 'Bulk export to CSV and a Gantt that actually shows blockers — the planning layer our team was missing.', author: 'Marcus Johnson', role: 'Engineering Lead, Globex' },
+  { quote: 'Two product managers, one board, zero refresh. The realtime sync changed how we plan.', author: 'Priya Patel', role: 'Head of Product, Initech' },
 ];
 
 const faqs = [
-  { q: 'How does the AI work?', a: 'TaskFlow AI uses your project history, team velocity, and task patterns to suggest optimal plans and timelines.' },
-  { q: 'Is my data secure?', a: 'Yes. We use enterprise-grade encryption and are SOC 2 Type II certified.' },
-  { q: 'Can I import from other tools?', a: 'Absolutely. We support one-click imports from Jira, Asana, Linear, and Trello.' },
-  { q: 'Do you offer a free trial?', a: 'Yes, all paid plans come with a 14-day free trial. No credit card required.' },
+  { q: 'What does this product replace?', a: 'It replaces the spreadsheet-plus-deck-plus-issue-tracker stack: customer input, prioritization, roadmap and tasks in one place, linked.' },
+  { q: 'How does scoring work?', a: 'You define factors (reach, impact, confidence, effort) with weights. Score is computed from named inputs, shown on every feature, and re-ranks live when you change a weight.' },
+  { q: 'What is the bulk export for?', a: 'Export the backlog, scoring inputs, roadmap or tasks to CSV for sharing offline or feeding into other tools. Useful for board updates and audits.' },
+  { q: 'Can a viewer role really not mutate data?', a: 'Viewer permissions are enforced on the API, not just the UI. Anyone with the role gets read-only access end-to-end.' },
 ];
 ---
-<BaseLayout title="TaskFlow AI — AI-First Project Management">
+<BaseLayout title="Project Management Software — Connect customer input to a roadmap">
   <!-- Hero -->
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 grid-pattern opacity-20"></div>
@@ -35,109 +38,88 @@ const faqs = [
       <div class="max-w-4xl mx-auto text-center animate-fade-up">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-sm mb-6">
           <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse-slow"></span>
-          New: AI Sprint Planner
+          BoldCreate Hackathon 2026
         </div>
         <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-          Ship projects <span class="gradient-text">10x faster</span> with AI
+          Product planning that <span class="gradient-text">connects the dots</span>
         </h1>
         <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-          The AI-first project management platform that automates planning, detects blockers, and predicts timelines — so your team can focus on shipping.
+          Customer input → roadmap → delivered work, in one tool. No more three disconnected apps and a spreadsheet arguing with each other.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <a href="/pricing" class="btn-primary">Start Free Trial</a>
-          <a href="/how-it-works" class="btn-secondary">See How It Works</a>
+          <a href="/features" class="btn-primary">See the requirements</a>
+          <a href="/how-it-works" class="btn-secondary">Walk through the flow</a>
         </div>
-        <p class="text-sm text-gray-500">No credit card required · 14-day free trial · Cancel anytime</p>
+        <p class="text-sm text-gray-500">Insight capture · Configurable scoring · Realtime board · Gantt dependency view</p>
       </div>
     </div>
   </section>
 
   <!-- Trusted by -->
-  <section class="container py-12 border-y border-ink-700/50">
-    <p class="text-center text-sm text-gray-500 uppercase tracking-wider mb-6">Trusted by 5,000+ teams</p>
-    <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
-      {trustedBy.map(name => (
-        <span class="text-2xl font-bold text-gray-600 hover:text-gray-400 transition-colors">{name}</span>
-      ))}
+  <section class="py-12 border-y border-ink-700/50">
+    <div class="container">
+      <p class="text-center text-sm text-gray-500 mb-8">Designed for product teams like</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+        {trustedBy.map(name => (
+          <span class="text-2xl font-bold text-gray-600 hover:text-gray-400 transition-colors">{name}</span>
+        ))}
+      </div>
     </div>
   </section>
 
-  <!-- Features highlights -->
-  <section class="container py-20">
-    <SectionHeading
-      eyebrow="Powerful features"
-      title="Everything you need to ship faster"
-      description="Built for modern teams that move fast and care about quality."
-    />
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {features.map(f => <FeatureCard title={f.title} description={f.description} />)}
+  <!-- Feature highlights -->
+  <section class="py-20">
+    <div class="container">
+      <SectionHeading eyebrow="Capabilities" title="One product, four planning layers" subtitle="Insight, Feature, Roadmap, Task — each linked to the next, so evidence flows up and work flows down." />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        {features.map(f => <FeatureCard title={f.title} description={f.description} />)}
+      </div>
     </div>
   </section>
 
   <!-- Workflow preview -->
-  <section class="container py-20">
-    <SectionHeading
-      eyebrow="How it works"
-      title="From chaos to clarity in seconds"
-      description="Watch TaskFlow AI transform a rough project idea into a complete plan."
-    />
-    <div class="glass rounded-2xl p-8 sm:p-12">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <div>
-          <h3 class="text-2xl font-bold text-white mb-4">Input your goal</h3>
-          <div class="bg-ink-900/60 rounded-lg p-4 font-mono text-sm text-gray-300 mb-6">
-            "Launch a new mobile app in Q2 with a team of 5 engineers"
-          </div>
-          <h3 class="text-2xl font-bold text-white mb-4">Get a complete plan</h3>
-          <ul class="space-y-2 text-gray-300">
-            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> 47 tasks auto-generated</li>
-            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> 12 dependencies mapped</li>
-            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> Sprint schedule ready</li>
-            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> Risk analysis included</li>
-          </ul>
-        </div>
-        <div class="relative">
-          <div class="absolute inset-0 gradient-bg opacity-20 blur-3xl"></div>
-          <div class="relative glass rounded-xl p-6 space-y-3">
-            <div class="flex items-center gap-3 p-3 bg-ink-900/60 rounded-lg">
-              <div class="w-2 h-2 rounded-full bg-green-400"></div>
-              <span class="text-sm text-gray-300">Design system audit</span>
-            </div>
-            <div class="flex items-center gap-3 p-3 bg-ink-900/60 rounded-lg">
-              <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
-              <span class="text-sm text-gray-300">API architecture review</span>
-            </div>
-            <div class="flex items-center gap-3 p-3 bg-ink-900/60 rounded-lg">
-              <div class="w-2 h-2 rounded-full bg-brand-400"></div>
-              <span class="text-sm text-gray-300">Beta release candidate</span>
-            </div>
-          </div>
-        </div>
+  <section class="py-20 bg-ink-800/30">
+    <div class="container">
+      <SectionHeading eyebrow="The flow" title="From a customer request to a shipped feature" />
+      <div class="mt-12 max-w-4xl mx-auto">
+        <ol class="space-y-6">
+          {[
+            { n: 1, t: 'Capture an insight', d: 'Support logs a verbatim customer request with customer name, segment and contract value.' },
+            { n: 2, t: 'Link to a feature', d: 'The PM triages it into the backlog, linking it to one or more features. The feature now carries that customer and revenue.' },
+            { n: 3, t: 'Score and rank', d: 'Configurable RICE-style scoring ranks the backlog live. The feature rises because real customers are behind it.' },
+            { n: 4, t: 'Place on the roadmap', d: 'Drag it onto the next release. Conflicting dependencies flag rather than silently shifting.' },
+            { n: 5, t: 'Break into tasks', d: 'Tasks with assignees, dates and finish-to-start dependencies. Gantt view shows the critical path.' },
+          ].map(step => (
+            <li class="flex gap-4 items-start">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center text-white font-bold">{step.n}</span>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-1">{step.t}</h3>
+                <p class="text-gray-400">{step.d}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </div>
   </section>
 
   <!-- Testimonials -->
-  <section class="container py-20">
-    <SectionHeading
-      eyebrow="Loved by teams"
-      title="What our customers say"
-    />
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {testimonials.map(t => <Testimonial quote={t.quote} author={t.author} role={t.role} />)}
+  <section class="py-20">
+    <div class="container">
+      <SectionHeading eyebrow="Why teams pick it" title="Built around the planning gap" />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+        {testimonials.map(t => <Testimonial quote={t.quote} author={t.author} role={t.role} />)}
+      </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="container py-20">
-    <SectionHeading
-      eyebrow="FAQ"
-      title="Common questions"
-    />
-    <div class="max-w-3xl mx-auto space-y-4">
-      {faqs.map(f => (
-        <FAQ question={f.q}>{f.a}</FAQ>
-      ))}
+  <section class="py-20 bg-ink-800/30">
+    <div class="container max-w-3xl">
+      <SectionHeading eyebrow="FAQ" title="Common questions" />
+      <div class="mt-12 space-y-3">
+        {faqs.map(item => <FAQ q={item.q} a={item.a} />)}
+      </div>
     </div>
   </section>
 

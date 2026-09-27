@@ -6,63 +6,60 @@ import CTA from '../components/CTA.astro';
 
 const groups = [
   {
-    name: 'AI & Automation',
+    name: 'Insight & evidence',
     items: [
-      { title: 'AI Sprint Planner', description: 'Auto-generate sprint plans from high-level goals in seconds.' },
-      { title: 'Smart Task Breakdown', description: 'Turn epics into actionable tasks with AI-powered decomposition.' },
-      { title: 'Predictive Timelines', description: 'Forecast delivery dates based on team velocity and historical data.' },
-      { title: 'Auto-prioritization', description: 'AI ranks tasks by impact, urgency, and dependencies.' },
+      { title: 'Insight intake (FR-1)', description: 'Record verbatim customer text, customer, segment, contract value, source channel, submitter and date. File unlinked; triage later.' },
+      { title: 'Insight-to-feature linking (FR-2)', description: 'One insight to many features. Each feature shows the number of distinct customers and total contract value behind it.' },
+      { title: 'Activity history (FR-11)', description: 'Every status change, reassignment and date change recorded with who and when, on a per-feature timeline.' },
     ],
   },
   {
-    name: 'Collaboration',
+    name: 'Feature backlog & scoring',
     items: [
-      { title: 'Real-time Updates', description: 'See changes instantly with live cursors and presence indicators.' },
-      { title: 'Smart Comments', description: 'AI summarizes threads, suggests replies, and extracts action items.' },
-      { title: '@Mentions & Assignments', description: 'Notify the right people with intelligent mention suggestions.' },
-      { title: 'Activity Feed', description: 'Stay in the loop with a personalized, AI-filtered activity stream.' },
+      { title: 'Feature record (FR-3)', description: 'Title, problem, solution, area, status, owner, target release, effort, and score inputs.' },
+      { title: 'Configurable scoring (FR-4)', description: 'RICE-style factors with editable weights. Re-ranks live on weight change. Formula and contribution visible, not black-boxed.' },
+      { title: 'Bulk export', description: 'Export backlog, scoring inputs, roadmap and tasks to CSV for board updates and audits.' },
     ],
   },
   {
-    name: 'Project Management',
+    name: 'Roadmap, board, tasks',
     items: [
-      { title: 'Kanban & List Views', description: 'Switch between views with smooth animations and saved filters.' },
-      { title: 'Gantt Charts', description: 'Visualize timelines with drag-and-drop dependency management.' },
-      { title: 'Custom Workflows', description: 'Build workflows that match your team with no-code automation.' },
-      { title: 'Milestones & Goals', description: 'Track OKRs and project milestones in one unified dashboard.' },
+      { title: 'Roadmap (FR-5)', description: 'Drag features across releases on a timeline. Dependent items flag conflicts rather than silently shifting.' },
+      { title: 'Kanban (FR-6)', description: 'Configurable columns mapped to statuses, drag between them, WIP limits with visible warning when exceeded.' },
+      { title: 'Tasks & dependencies (FR-7)', description: 'Tasks under features with start/end, percent complete, assignee, finish-to-start dependencies. Gantt view surfaces the critical path.' },
     ],
   },
   {
-    name: 'Integrations & Security',
+    name: 'Collaboration & platform',
     items: [
-      { title: '100+ Integrations', description: 'Connect with GitHub, Slack, Figma, Linear, and more.' },
-      { title: 'API & Webhooks', description: 'Build custom integrations with our robust developer API.' },
-      { title: 'SSO & SCIM', description: 'Enterprise-grade authentication and user provisioning.' },
-      { title: 'Audit Logs', description: 'Complete activity history for compliance and security.' },
+      { title: 'Realtime sync (FR-8)', description: 'Any create, move or edit propagates to all clients in under a second. Conflicting simultaneous edits resolved deterministically.' },
+      { title: 'Background jobs (FR-9)', description: 'Score recalculation, search indexing, digest and notifications — at-least-once with idempotent handlers, survive restart.' },
+      { title: 'Search & filter (FR-10)', description: 'Full-text across insights, features and tasks with structured filters that compose. Sub-second on the demo dataset.' },
+      { title: 'Roles & permissions (FR-12)', description: 'Contributor, Product Manager, Viewer. Permissions enforced on the API, not just the UI.' },
     ],
   },
 ];
 ---
-<BaseLayout title="Features — TaskFlow AI">
-  <section class="container py-20">
-    <SectionHeading
-      eyebrow="Features"
-      title="Everything you need to ship"
-      description="12 powerful features, designed for AI-first teams."
-    />
-  </section>
+<BaseLayout title="Features — Project Management Software">
+  <section class="py-20">
+    <div class="container">
+      <SectionHeading eyebrow="Functional requirements" title="Twelve requirements, four groups" subtitle="Everything listed here maps back to a numbered spec ID so the demo can be checked against the requirements." />
 
-  {groups.map((group, idx) => (
-    <section class="container py-12">
-      <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-        <span class="w-2 h-8 rounded gradient-bg"></span>
-        {group.name}
-      </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {group.items.map(item => <FeatureCard title={item.title} description={item.description} />)}
+      <div class="space-y-16 mt-16">
+        {groups.map(group => (
+          <div>
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <span class="w-1.5 h-8 bg-gradient-to-b from-brand-500 to-accent rounded-full"></span>
+              {group.name}
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {group.items.map(item => <FeatureCard title={item.title} description={item.description} />)}
+            </div>
+          </div>
+        ))}
       </div>
-    </section>
-  ))}
+    </div>
+  </section>
 
   <CTA />
 </BaseLayout>

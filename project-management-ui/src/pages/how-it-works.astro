@@ -1,73 +1,84 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import WorkflowStep from '../components/WorkflowStep.astro';
 import CTA from '../components/CTA.astro';
 
 const steps = [
-  { number: 1, title: 'Connect your tools', description: 'Integrate with GitHub, Figma, Slack, and 100+ more in seconds.' },
-  { number: 2, title: 'Set your goals', description: 'Tell TaskFlow AI what you want to achieve. Be as vague or specific as you like.' },
-  { number: 3, title: 'Get an AI plan', description: 'Our AI generates a complete project plan with tasks, dependencies, and timelines.' },
-  { number: 4, title: 'Ship faster', description: 'Track progress with predictive analytics and let AI handle the busywork.' },
+  {
+    n: 1,
+    t: 'Capture customer input',
+    d: 'Support, sales or PMs log insights as they arrive. Each one carries the verbatim customer text, customer, segment, contract value, source channel and submitter. Filed unlinked when there is no obvious feature yet.',
+  },
+  {
+    n: 2,
+    t: 'Triage into the backlog',
+    d: 'A product manager reviews the unlinked queue, groups duplicates, and links insights to features. The feature now carries that customer and revenue — the evidence trail that justifies priority.',
+  },
+  {
+    n: 3,
+    t: 'Score and rank live',
+    d: 'Configurable RICE-style factors with editable weights. Change a weight and the whole backlog re-ranks live. The formula and each factor’s contribution are shown on the feature, not hidden.',
+  },
+  {
+    n: 4,
+    t: 'Plan, assign, ship',
+    d: 'Top features get placed on the roadmap against a release, then broken into tasks with assignees, dates and finish-to-start dependencies. The Gantt dependency view surfaces the critical path and flags any late predecessor.',
+  },
 ];
 
-const integrations = ['GitHub', 'GitLab', 'Slack', 'Figma', 'Notion', 'Jira', 'Linear', 'Trello'];
+const loop = [
+  { t: 'A new insight arrives', d: 'Captured unlinked, queued for triage.' },
+  { t: 'PM links it to a feature', d: 'Feature gains a customer and contract value.' },
+  { t: 'Score recalculates', d: 'Backlog re-ranks live; feature moves up.' },
+  { t: 'Feature lands on the roadmap', d: 'Drag onto next release; conflicts flagged.' },
+  { t: 'Tasks & dependencies', d: 'Gantt shows critical path; late predecessors surface.' },
+];
 ---
-<BaseLayout title="How It Works — TaskFlow AI">
-  <section class="container py-20">
-    <SectionHeading
-      eyebrow="How it works"
-      title="From idea to ship in 4 steps"
-      description="A simple pipeline that turns chaos into clarity."
-    />
-  </section>
-
-  <section class="container pb-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-      {steps.map(s => <WorkflowStep number={s.number} title={s.title} description={s.description} />)}
+<BaseLayout title="How It Works — Project Management Software">
+  <section class="py-20">
+    <div class="container">
+      <SectionHeading eyebrow="The flow" title="From a customer request to a shipped feature" subtitle="Four steps, one connected pipeline." />
+      <div class="mt-16 max-w-4xl mx-auto space-y-8">
+        {steps.map(step => (
+          <div class="glass-card p-8 flex gap-6">
+            <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center text-2xl font-bold text-white">
+              {step.n}
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-2">{step.t}</h3>
+              <p class="text-gray-400 leading-relaxed">{step.d}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="container py-20">
-    <div class="glass rounded-2xl p-8 sm:p-12 relative overflow-hidden">
-      <div class="absolute inset-0 grid-pattern opacity-20"></div>
-      <div class="relative">
-        <SectionHeading
-          eyebrow="AI feedback loop"
-          title="The AI gets smarter with every project"
-          description="TaskFlow AI continuously learns from your team's velocity, decisions, and outcomes — getting more accurate over time."
-          align="left"
-        />
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
-          <div class="text-center">
-            <div class="text-4xl font-bold gradient-text mb-2">87%</div>
-            <p class="text-gray-400 text-sm">Accuracy after 1 month</p>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl font-bold gradient-text mb-2">94%</div>
-            <p class="text-gray-400 text-sm">Accuracy after 6 months</p>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl font-bold gradient-text mb-2">99%</div>
-            <p class="text-gray-400 text-sm">Accuracy after 1 year</p>
-          </div>
+  <section class="py-20 bg-ink-800/30">
+    <div class="container">
+      <SectionHeading eyebrow="Feedback loop" title="Every new insight can change the ranking" />
+      <div class="mt-12 max-w-3xl mx-auto">
+        <div class="space-y-3">
+          {loop.map((l, i) => (
+            <div class="glass-card p-5 flex items-center gap-4">
+              <span class="text-sm font-mono text-brand-400 w-8">0{i + 1}</span>
+              <div>
+                <h4 class="text-white font-semibold">{l.t}</h4>
+                <p class="text-sm text-gray-400">{l.d}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   </section>
 
-  <section class="container py-20">
-    <SectionHeading
-      eyebrow="Integrations"
-      title="Works with your stack"
-      description="100+ integrations. Connect everything your team uses."
-    />
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
-      {integrations.map(name => (
-        <div class="glass rounded-lg p-6 text-center hover:border-brand-500/50 transition-colors">
-          <span class="text-white font-medium">{name}</span>
-        </div>
-      ))}
+  <section class="py-20">
+    <div class="container max-w-3xl">
+      <SectionHeading eyebrow="Integrations" title="Syncfusion components, end-to-end" />
+      <p class="text-gray-400 text-center">
+        The board, timeline and Gantt are powered by Syncfusion Kanban, Scheduler and Gantt. Rebuilding what those already ship is a completeness loss under the hackathon rubric, so we use them as the foundation, not decoration.
+      </p>
     </div>
   </section>
 
