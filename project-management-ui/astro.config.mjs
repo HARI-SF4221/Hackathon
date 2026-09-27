@@ -8,4 +8,8 @@ export default defineConfig({
     }),
   ],
   site: 'https://taskflow.ai',
+  server: {
+    host: '0.0.0.0',
+    port: 4321,
+  },
 });
