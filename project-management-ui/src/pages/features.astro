@@ -6,63 +6,73 @@ import CTA from '../components/CTA.astro';
 
 const groups = [
   {
-    name: 'AI & Automation',
+    name: 'Capture',
     items: [
-      { title: 'AI Sprint Planner', description: 'Auto-generate sprint plans from high-level goals in seconds.' },
-      { title: 'Smart Task Breakdown', description: 'Turn epics into actionable tasks with AI-powered decomposition.' },
-      { title: 'Predictive Timelines', description: 'Forecast delivery dates based on team velocity and historical data.' },
-      { title: 'Auto-prioritization', description: 'AI ranks tasks by impact, urgency, and dependencies.' },
+      { title: 'Insight intake', description: 'Verbatim customer text, customer name, segment, contract value, source channel, submitter and date. Filed unlinked and triaged later.' },
+      { title: 'Insight-to-feature linking', description: 'One insight links to zero or more features. A feature shows every linked insight, the customer count, and the contract value represented.' },
+      { title: 'Public request portal', description: 'Customers submit and upvote requests directly. Each request becomes an insight in the same triage flow.' },
     ],
   },
   {
-    name: 'Collaboration',
+    name: 'Prioritize',
     items: [
-      { title: 'Real-time Updates', description: 'See changes instantly with live cursors and presence indicators.' },
-      { title: 'Smart Comments', description: 'AI summarizes threads, suggests replies, and extracts action items.' },
-      { title: '@Mentions & Assignments', description: 'Notify the right people with intelligent mention suggestions.' },
-      { title: 'Activity Feed', description: 'Stay in the loop with a personalized, AI-filtered activity stream.' },
+      { title: 'Feature record', description: 'Title, problem, proposed solution, product area, status (idea → planned → in progress → shipped → declined), owner, target release, effort.' },
+      { title: 'Configurable scoring', description: 'Priority score is computed from named factors with configurable weights. Changing a weight re-ranks the whole backlog live.' },
+      { title: 'Transparent formula', description: 'The formula and each factor contribution are shown on the feature, not hidden. Every input is editable.' },
     ],
   },
   {
-    name: 'Project Management',
+    name: 'Plan',
     items: [
-      { title: 'Kanban & List Views', description: 'Switch between views with smooth animations and saved filters.' },
-      { title: 'Gantt Charts', description: 'Visualize timelines with drag-and-drop dependency management.' },
-      { title: 'Custom Workflows', description: 'Build workflows that match your team with no-code automation.' },
-      { title: 'Milestones & Goals', description: 'Track OKRs and project milestones in one unified dashboard.' },
+      { title: 'Roadmap timeline', description: 'Features placed on a timeline by target release or date range. Drag to reschedule. Dependent items flag a conflict rather than silently shifting.' },
+      { title: 'Kanban board', description: 'Configurable columns mapped to statuses, drag-and-drop, per-column WIP limit with a visual warning when exceeded.' },
+      { title: 'Activity history', description: 'Every status change, reassignment and date change recorded with who and when — visible as a timeline on the feature.' },
     ],
   },
   {
-    name: 'Integrations & Security',
+    name: 'Execute',
     items: [
-      { title: '100+ Integrations', description: 'Connect with GitHub, Slack, Figma, Linear, and more.' },
-      { title: 'API & Webhooks', description: 'Build custom integrations with our robust developer API.' },
-      { title: 'SSO & SCIM', description: 'Enterprise-grade authentication and user provisioning.' },
-      { title: 'Audit Logs', description: 'Complete activity history for compliance and security.' },
+      { title: 'Task breakdown', description: 'A feature decomposes into tasks with assignee, due date, dependency and progress. A dependency view shows the critical path.' },
+      { title: 'Real-time sync', description: 'Any create, move or edit propagates to all connected clients within one second. Conflicting simultaneous edits resolve deterministically.' },
+      { title: 'Background jobs', description: 'Score recalculation, search indexing, digest generation and notification delivery run as background jobs that survive a restart and can be retried.' },
     ],
   },
 ];
 ---
-<BaseLayout title="Features — TaskFlow AI">
+<BaseLayout title="Features — Project Management Software">
   <section class="container py-20">
     <SectionHeading
-      eyebrow="Features"
-      title="Everything you need to ship"
-      description="12 powerful features, designed for AI-first teams."
+      eyebrow="12 features in 4 groups"
+      title="The full scope, end to end"
+      description="Every feature that ships in the 36-hour hackathon build."
     />
   </section>
 
-  {groups.map((group, idx) => (
+  {groups.map(group => (
     <section class="container py-12">
-      <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-        <span class="w-2 h-8 rounded gradient-bg"></span>
-        {group.name}
+      <h2 class="text-3xl font-bold text-white mb-8">
+        <span class="gradient-text">{group.name}</span>
       </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {group.items.map(item => <FeatureCard title={item.title} description={item.description} />)}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {group.items.map(item => (
+          <FeatureCard title={item.title} description={item.description} />
+        ))}
       </div>
     </section>
   ))}
+
+  <!-- Stretch -->
+  <section class="container py-12">
+    <div class="glass rounded-2xl p-8 sm:p-12">
+      <h2 class="text-2xl font-bold text-white mb-4">Stretch features — build if time allows</h2>
+      <ul class="space-y-3 text-gray-300">
+        <li class="flex items-start gap-2"><span class="text-brand-400">+</span> Public request portal where customers submit and upvote requests.</li>
+        <li class="flex items-start gap-2"><span class="text-brand-400">+</span> Release notes generated from delivered features.</li>
+        <li class="flex items-start gap-2"><span class="text-brand-400">+</span> Capacity planning: effort estimates summed against a team's available capacity per period.</li>
+        <li class="flex items-start gap-2"><span class="text-brand-400">+</span> Notifications when a submitted insight reaches a status change.</li>
+      </ul>
+    </div>
+  </section>
 
   <CTA />
 </BaseLayout>

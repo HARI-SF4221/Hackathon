@@ -4,104 +4,66 @@ import SectionHeading from '../components/SectionHeading.astro';
 import CTA from '../components/CTA.astro';
 
 const stats = [
-  { value: '5,000+', label: 'Active teams' },
-  { value: '2M+', label: 'Projects shipped' },
-  { value: '99.9%', label: 'Uptime SLA' },
-  { value: '47', label: 'Countries' },
+  { value: '36h', label: 'hackathon window' },
+  { value: '12', label: 'features in 4 groups' },
+  { value: '3', label: 'user roles' },
+  { value: '4', label: 'core data entities' },
 ];
 
 const values = [
-  { title: 'AI-First', description: 'We believe AI is the future of work. Every feature is built with intelligence at its core.' },
-  { title: 'Customer Obsessed', description: 'Our customers are our co-pilots. Their feedback shapes every product decision we make.' },
-  { title: 'Ship Fast', description: 'We practice what we preach. We ship daily, iterate quickly, and never compromise on quality.' },
-  { title: 'Transparent', description: 'Open by default. Open about our pricing, our progress, and our mistakes.' },
+  { title: 'Evidence over opinion', body: 'Every priority decision shows the customer evidence behind it — the requester, the segment, the contract value.' },
+  { title: 'Closed loops, not handoffs', body: 'Insight to feature to task to ship, then back to the customer. Nothing drops on the floor.' },
+  { title: 'Reuse what already exists', body: 'Syncfusion Gantt, Kanban and Scheduler are dogfooded. Rebuilding them is a completeness loss under the rubric.' },
+  { title: 'Sub-second is the floor', body: 'Real-time sync, instant re-rank, search under a second on the demo dataset. Slow tools stop being used.' },
 ];
 
 const team = [
-  { name: 'Alex Rivera', role: 'CEO & Co-founder', initials: 'AR' },
-  { name: 'Sam Lee', role: 'CTO & Co-founder', initials: 'SL' },
-  { name: 'Jordan Kim', role: 'Head of AI', initials: 'JK' },
-  { name: 'Taylor Reed', role: 'Head of Design', initials: 'TR' },
+  { name: 'Product', role: 'Triage, score, roadmap' },
+  { name: 'Engineering', role: 'Backend, frontend, real-time' },
+  { name: 'Design', role: 'Syncfusion dogfooding, a11y' },
 ];
 ---
-<BaseLayout title="About — TaskFlow AI">
+<BaseLayout title="About — Project Management Software">
   <section class="container py-20">
     <SectionHeading
-      eyebrow="About us"
-      title="We're building the future of work"
-      description="TaskFlow AI was founded in 2023 with a simple mission: make project management effortless through AI."
+      eyebrow="About the project"
+      title="Closing the loop between what customers ask for and what actually ships"
+      description="A hackathon build that puts planning on the same evidence trail as execution."
     />
   </section>
 
-  <section class="container pb-20">
+  <section class="container py-12">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
       {stats.map(s => (
         <div class="glass rounded-xl p-6 text-center">
-          <div class="text-3xl sm:text-4xl font-bold gradient-text mb-2">{s.value}</div>
-          <p class="text-gray-400 text-sm">{s.label}</p>
+          <div class="text-4xl font-bold gradient-text mb-2">{s.value}</div>
+          <div class="text-sm text-gray-400 uppercase tracking-wider">{s.label}</div>
         </div>
       ))}
     </div>
   </section>
 
-  <section class="container py-20">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">Our mission</h2>
-        <p class="text-gray-300 text-lg leading-relaxed">
-          We believe that 80% of project management is busywork — the planning, the status updates, the dependency tracking. The other 20% is the actual creative work that moves the needle.
-        </p>
-        <p class="text-gray-300 text-lg leading-relaxed mt-4">
-          Our mission is to eliminate the 80% with AI, so your team can focus on the 20% that matters. We're building the project management tool we wish we had — one that thinks, learns, and gets out of the way.
-        </p>
-      </div>
-      <div class="glass rounded-2xl p-8 relative overflow-hidden">
-        <div class="absolute inset-0 gradient-bg opacity-10"></div>
-        <div class="relative">
-          <svg class="w-full h-auto" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="chart-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#8B5CF6"/>
-                <stop offset="100%" stop-color="#3B82F6"/>
-              </linearGradient>
-            </defs>
-            <path d="M0 80 Q 50 60, 100 50 T 200 20" stroke="url(#chart-grad)" stroke-width="3" fill="none"/>
-            <circle cx="200" cy="20" r="4" fill="#3B82F6"/>
-          </svg>
-          <p class="text-center text-gray-300 text-sm mt-4">Productivity gains with TaskFlow AI</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="container py-20">
-    <SectionHeading
-      eyebrow="Our values"
-      title="What we stand for"
-    />
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <section class="container py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {values.map(v => (
-        <div class="glass rounded-xl p-6">
-          <h3 class="text-xl font-semibold text-white mb-2">{v.title}</h3>
-          <p class="text-gray-400 text-sm">{v.description}</p>
+        <div class="glass rounded-xl p-8">
+          <h3 class="text-xl font-bold text-white mb-3">{v.title}</h3>
+          <p class="text-gray-300">{v.body}</p>
         </div>
       ))}
     </div>
   </section>
 
-  <section class="container py-20">
-    <SectionHeading
-      eyebrow="Our team"
-      title="Meet the people behind TaskFlow AI"
-    />
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+  <section class="container py-12">
+    <h2 class="text-3xl font-bold text-white mb-8 text-center">The team</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
       {team.map(m => (
-        <div class="text-center">
-          <div class="w-24 h-24 mx-auto rounded-full gradient-bg flex items-center justify-center text-2xl font-bold text-white mb-3">
-            {m.initials}
+        <div class="glass rounded-xl p-6 text-center">
+          <div class="w-20 h-20 rounded-full mx-auto mb-4 bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center text-2xl font-bold text-white">
+            {m.name[0]}
           </div>
-          <h3 class="text-white font-semibold">{m.name}</h3>
-          <p class="text-gray-400 text-sm">{m.role}</p>
+          <div class="text-lg font-semibold text-white">{m.name}</div>
+          <div class="text-sm text-gray-400">{m.role}</div>
         </div>
       ))}
     </div>

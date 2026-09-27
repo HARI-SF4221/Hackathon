@@ -6,28 +6,29 @@ import Testimonial from '../components/Testimonial.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 
-const trustedBy = ['Acme', 'Globex', 'Initech', 'Umbrella', 'Stark', 'Wayne'];
+const trustedBy = ['Productboard', 'Aha!', 'Linear', 'Notion', 'Jira', 'Asana'];
 
 const features = [
-  { title: 'AI Auto-Planning', description: 'Our AI breaks down goals into actionable tasks automatically.' },
-  { title: 'Smart Dependencies', description: 'Auto-detect blockers and reorder tasks to keep teams unblocked.' },
-  { title: 'Predictive Timelines', description: 'AI forecasts delivery dates based on team velocity and history.' },
+  { title: 'Insight capture', description: 'Customer feedback, requests and pain points captured with source, customer, date and free text — attachable to one or more features.' },
+  { title: 'Prioritization scoring', description: 'Configurable RICE-style scoring (reach, impact, confidence, effort) with every input visible and editable — no black-box numbers.' },
+  { title: 'Roadmap with evidence', description: 'See exactly which customers asked for a feature and how much revenue they represent. The evidence trail that justifies priority.' },
 ];
 
 const testimonials = [
-  { quote: 'TaskFlow AI cut our sprint planning from 2 hours to 15 minutes.', author: 'Sarah Chen', role: 'Engineering Lead, Acme' },
-  { quote: 'The AI suggestions are scarily accurate. It knows what we should work on next.', author: 'Marcus Johnson', role: 'Product Manager, Globex' },
-  { quote: 'Best project management tool we have used. Period.', author: 'Priya Patel', role: 'CTO, Initech' },
+  { quote: 'We finally stopped arguing about priority in meetings. The score and the customer evidence behind it do that for us.', author: 'Priya Subramanian', role: 'Product Manager, Acme' },
+  { quote: 'Dragging features onto a release that already shows capacity and critical-path tasks changed our planning meetings completely.', author: 'Marcus Lindqvist', role: 'Engineering Lead, Globex' },
+  { quote: 'Sales sees where a customer request landed. Support sees when it ships. That alone was worth the migration.', author: 'Hannah Okafor', role: 'Head of Product, Initech' },
 ];
 
 const faqs = [
-  { q: 'How does the AI work?', a: 'TaskFlow AI uses your project history, team velocity, and task patterns to suggest optimal plans and timelines.' },
-  { q: 'Is my data secure?', a: 'Yes. We use enterprise-grade encryption and are SOC 2 Type II certified.' },
-  { q: 'Can I import from other tools?', a: 'Absolutely. We support one-click imports from Jira, Asana, Linear, and Trello.' },
-  { q: 'Do you offer a free trial?', a: 'Yes, all paid plans come with a 14-day free trial. No credit card required.' },
+  { q: 'How is this different from Jira or Linear?', a: 'Those are execution trackers. This is the planning layer above them — insight capture, prioritization, roadmap, then tasks that hand off into execution.' },
+  { q: 'Can a viewer see the roadmap without an account?', a: 'Read-only viewers can. Role-based permissions ensure they cannot mutate anything through the API either, not just the UI.' },
+  { q: 'Does the prioritization score update live?', a: 'Yes. Adjust any factor weight and the whole backlog re-ranks instantly. The formula and each factor contribution stay visible on every feature.' },
+  { q: 'How do dependencies work?', a: 'Tasks have finish-to-start dependencies. The dependency view shows the critical path and flags any task whose predecessor is late, before it slips the release.' },
+  { q: 'Is there a public request portal?', a: 'Yes — customers can submit and upvote requests. Each request becomes an insight that flows through the same triage process.' },
 ];
 ---
-<BaseLayout title="TaskFlow AI — AI-First Project Management">
+<BaseLayout title="Project Management Software — Connect customer input to a roadmap">
   <!-- Hero -->
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 grid-pattern opacity-20"></div>
@@ -35,26 +36,26 @@ const faqs = [
       <div class="max-w-4xl mx-auto text-center animate-fade-up">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-sm mb-6">
           <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse-slow"></span>
-          New: AI Sprint Planner
+          BoldCreate Hackathon 2026 — Requirements Spec
         </div>
         <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-          Ship projects <span class="gradient-text">10x faster</span> with AI
+          Connect customer input to a <span class="gradient-text">roadmap</span> to delivered work
         </h1>
         <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-          The AI-first project management platform that automates planning, detects blockers, and predicts timelines — so your team can focus on shipping.
+          Product planning that closes the loop between what customers ask for, what your team commits to, and what actually ships — instead of three disconnected tools and a spreadsheet.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <a href="/pricing" class="btn-primary">Start Free Trial</a>
-          <a href="/how-it-works" class="btn-secondary">See How It Works</a>
+          <a href="/features" class="btn-primary">See the requirements</a>
+          <a href="/how-it-works" class="btn-secondary">Read the demo flow</a>
         </div>
-        <p class="text-sm text-gray-500">No credit card required · 14-day free trial · Cancel anytime</p>
+        <p class="text-sm text-gray-500">36-hour scope · Three personas · One trail of evidence</p>
       </div>
     </div>
   </section>
 
   <!-- Trusted by -->
   <section class="container py-12 border-y border-ink-700/50">
-    <p class="text-center text-sm text-gray-500 uppercase tracking-wider mb-6">Trusted by 5,000+ teams</p>
+    <p class="text-center text-sm text-gray-500 uppercase tracking-wider mb-6">Aligned with the way modern PM teams already work</p>
     <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
       {trustedBy.map(name => (
         <span class="text-2xl font-bold text-gray-600 hover:text-gray-400 transition-colors">{name}</span>
@@ -65,9 +66,10 @@ const faqs = [
   <!-- Features highlights -->
   <section class="container py-20">
     <SectionHeading
-      eyebrow="Powerful features"
-      title="Everything you need to ship faster"
-      description="Built for modern teams that move fast and care about quality."
+      eyebrow="The core loop"
+      eyebrow="The core loop"
+      title="Insight → Feature → Score → Roadmap → Tasks"
+      description="A single trail of evidence that justifies every priority decision."
     />
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {features.map(f => <FeatureCard title={f.title} description={f.description} />)}
@@ -77,23 +79,23 @@ const faqs = [
   <!-- Workflow preview -->
   <section class="container py-20">
     <SectionHeading
-      eyebrow="How it works"
-      title="From chaos to clarity in seconds"
-      description="Watch TaskFlow AI transform a rough project idea into a complete plan."
+      eyebrow="Demo flow"
+      title="From a customer request to a critical-path task"
+      description="What the 36-hour demo will show, end to end."
     />
     <div class="glass rounded-2xl p-8 sm:p-12">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div>
-          <h3 class="text-2xl font-bold text-white mb-4">Input your goal</h3>
+          <h3 class="text-2xl font-bold text-white mb-4">A support user submits three requests</h3>
           <div class="bg-ink-900/60 rounded-lg p-4 font-mono text-sm text-gray-300 mb-6">
-            "Launch a new mobile app in Q2 with a team of 5 engineers"
+            "Customers Acme ($120k ARR) and Globex ($90k ARR) both need bulk export. Initech ($15k) needs SSO."
           </div>
-          <h3 class="text-2xl font-bold text-white mb-4">Get a complete plan</h3>
+          <h3 class="text-2xl font-bold text-white mb-4">The PM triages and the score changes</h3>
           <ul class="space-y-2 text-gray-300">
-            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> 47 tasks auto-generated</li>
-            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> 12 dependencies mapped</li>
-            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> Sprint schedule ready</li>
-            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> Risk analysis included</li>
+            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> Bulk export: 2 customers, $210k ARR, top of ranked backlog</li>
+            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> SSO: 1 customer, $15k ARR, lower priority but still visible</li>
+            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> Drag bulk export onto next release — conflict check runs</li>
+            <li class="flex items-start gap-2"><span class="text-brand-400">✓</span> Five tasks created with dependencies, critical path shown</li>
           </ul>
         </div>
         <div class="relative">
@@ -101,15 +103,15 @@ const faqs = [
           <div class="relative glass rounded-xl p-6 space-y-3">
             <div class="flex items-center gap-3 p-3 bg-ink-900/60 rounded-lg">
               <div class="w-2 h-2 rounded-full bg-green-400"></div>
-              <span class="text-sm text-gray-300">Design system audit</span>
+              <span class="text-sm text-gray-300">Insight: Bulk export (Acme + Globex, $210k)</span>
             </div>
             <div class="flex items-center gap-3 p-3 bg-ink-900/60 rounded-lg">
               <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
-              <span class="text-sm text-gray-300">API architecture review</span>
+              <span class="text-sm text-gray-300">Feature: Bulk export — score 84, ranked #1</span>
             </div>
-            <div class="flex items-center gap-3 p-3 bg-ink-900/60 rounded-lg">
-              <div class="w-2 h-2 rounded-full bg-brand-400"></div>
-              <span class="text-sm text-gray-300">Beta release candidate</span>
+            <div class="flex items-start gap-3 p-3 bg-ink-900/60 rounded-lg">
+              <div class="w-2 h-2 rounded-full bg-brand-400 mt-1"></div>
+              <span class="text-sm text-gray-300">Roadmap: Q2 release · 5 tasks · critical path 14d</span>
             </div>
           </div>
         </div>
@@ -120,8 +122,8 @@ const faqs = [
   <!-- Testimonials -->
   <section class="container py-20">
     <SectionHeading
-      eyebrow="Loved by teams"
-      title="What our customers say"
+      eyebrow="Why teams adopt this"
+      title="A planning layer the rest of the stack can rely on"
     />
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {testimonials.map(t => <Testimonial quote={t.quote} author={t.author} role={t.role} />)}
